@@ -2,6 +2,8 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Horaire;
+use App\Entity\Service;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -44,7 +46,8 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Compte Utilisateur', 'fa-solid fa-users', User::class);
-
+        yield MenuItem::linkToCrud('Service', 'fa-solid fa-folder', Service::class);
+        yield MenuItem::linkToCrud('Horaire', 'fa-sharp fa-solid fa-business-time', Horaire::class);
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }

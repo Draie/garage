@@ -1,0 +1,84 @@
+<?php
+
+namespace App\Controller;
+
+use App\Form\ServiceType;
+use App\Repository\ServiceRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\DocBlock\Tags\Method;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+
+
+
+class ServicesController extends AbstractController
+{
+    #[Route('/services', name: 'app_services')]
+
+  
+        // creates a task object and initializes some data for this example
+    public function index(ServiceRepository $repo):Response
+     {
+        return $this->render('services/index.html.twig',[
+            'services'=> $repo->findAll()
+            ]);
+        }
+
+
+
+
+        /*    #[Route('/createservice', name: 'app_servicescreate' )]
+            public function create(Request $request, EntityManagerInterface $em):Response
+            {
+
+           
+                $form= $this->createFormBuilder()
+                ->add('Title',TextType::class,)
+
+                ->add('Description',TextareaType::class,)
+                ->add('Ajouter un service')
+                ->getForm()
+                ;
+
+                return $this->render('services/service.html.twig', [
+                    'formService'=>$form->createView()
+                ]);
+
+               
+        */
+                  
+
+
+
+              
+        
+
+    }
+        
+
+        
+
+      
+      
+       
+        // ...
+    
+
+/* 
+    #[Route('/services', name: 'app_services')]
+    public function index(): Response
+    {
+        return $this->render('services/index.html.twig', [
+            'controller_name' => 'ServicesController',
+        ]);
+    }
+    */
+
+
+        

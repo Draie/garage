@@ -1,0 +1,48 @@
+
+{% extends 'base.html.twig' %}
+{% block title %}Horaire index{% endblock %}
+{% block stylesheets %}
+            <link href="{{ asset('css/horaire.css') }}" rel="stylesheet" />
+        {% endblock %}
+{% block body %}
+    <h1>Horaire du Garage</h1>
+
+    <table class="table">
+        <thead class="columnName">
+            <tr>
+              
+                <th>Jour</th>
+                <th>Horaire du matin</th>
+                <th>Horaire de fin de matinée</th>
+                <th>Horraire de l'après-midi</th>
+                <th>Horaire de fin d'après-midi</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for horairedujour in horairedujour %}
+            <tr>
+             
+                <td >{{ horairedujour.Jour }}</td>
+                <td>{{ horairedujour.morningStartTime ? horairedujour.morningStartTime|date('H:i:s') : '' }}</td>
+                <td>{{ horairedujour.morningEndTime ? horairedujour.morningEndTime|date('H:i:s') : '' }}</td>
+                <td>{{ horairedujour.afterStartTime ? horairedujour.afterStartTime|date('H:i:s') : '' }}</td>
+                <td>{{ horairedujour.afterEndTime ? horairedujour.afterEndTime|date('H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_horaire_show', {'id': horairedujour.id}) }}">Détail</a>
+                    <a href="{{ path('app_horaire_edit', {'id': horairedujour.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_horaire_new') }}">Ajouter</a>
+  
+{% endblock %}
+
+

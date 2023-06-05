@@ -1,0 +1,45 @@
+
+
+{% block title %}Auto index{% endblock %}
+
+{% block body %}
+    <h1>Auto index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Img</th>
+                <th>AutoDate</th>
+                <th>Kilometrage</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for auto in autos %}
+            <tr>
+                <td>{{ auto.id }}</td>
+                <td>{{ auto.Name }}</td>
+                <td>{{ auto.price }}</td>
+                <td>{{ auto.img ? auto.img|join(', ') : '' }}</td>
+                <td>{{ auto.autoDate ? auto.autoDate|date('Y-m-d') : '' }}</td>
+                <td>{{ auto.kilometrage }}</td>
+                <td>{{ auto.description }}</td>
+                <td>
+                    <a href="{{ path('app_auto_show', {'id': auto.id}) }}">show</a>
+                    <a href="{{ path('app_auto_edit', {'id': auto.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_auto_new') }}">Create new</a>
+{% endblock %}
